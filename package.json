@@ -1,0 +1,16 @@
+{
+  "name": "wash-api",
+  "version": "1.0.0",
+  "description": "nodejs image demo",
+  "author": "Willian Marciel <willian.dev10@gmail.com>",
+  "license": "MIT",
+  "main": "app.js",
+  "keywords": [
+    "nodejs",
+    "bootstrap",
+    "express"
+  ],
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
