@@ -6,7 +6,10 @@
   "license": "MIT",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "migrate": "npx knex migrate:latest",
+    "unmigrate": "npx knex migrate:rollback",
+    "seed": "npx knex seed:run"
   },
   "keywords": [
     "nodejs",
