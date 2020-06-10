@@ -4,13 +4,23 @@
   "description": "nodejs image demo",
   "author": "Willian Marciel <willian.dev10@gmail.com>",
   "license": "MIT",
-  "main": "app.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
   "keywords": [
     "nodejs",
     "bootstrap",
     "express"
   ],
   "dependencies": {
-    "express": "^4.16.4"
+    "dotenv": "^8.2.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "knex": "^0.21.1",
+    "pg": "^8.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
