@@ -21,4 +21,10 @@ module.exports = {
     const user = await connection('users').where('id', id).first();
     return response.json(user);
   },
+
+  async delete(request, response) {
+    const { id } = request.body;
+    await connection('users').where('id', id).delete();
+    return response.json({"status_code":204, "result":true});
+  }
 }
