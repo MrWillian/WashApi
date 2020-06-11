@@ -2,3 +2,4 @@
 .env
 /mysqlconf
 /run
+/.scannerwork
