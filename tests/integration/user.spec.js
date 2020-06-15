@@ -3,12 +3,13 @@ const app = require('../../src/app');
 const connection = require('../../src/database/connection');
 
 describe('User', () => {
-  beforeEach(async () => { await connection.migrate.latest(); });
-
-  afterAll(async () => { 
-    await connection.migrate.rollback();
-    connection.destroy(); 
+  beforeEach(async () => { 
+    return connection.migrate.rollback().then(function() {
+      return connection.migrate.latest();
+    });
   });
+
+  afterAll(async () => {  connection.destroy(); });
 
   it('should be able to create a new User', async () => {
     const response = await createUser();
