@@ -14,6 +14,6 @@ module.exports = {
   },
 
   async delete(request, response) {
-    return await userRepository.delete(request, response);  
+    return await userRepository.delete(request, response);
   }
 }
