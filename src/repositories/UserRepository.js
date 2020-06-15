@@ -1,4 +1,3 @@
-const connection = require("../database/connection.js");
 const baseRepository = require("./BaseRepository");
 
 module.exports = {
