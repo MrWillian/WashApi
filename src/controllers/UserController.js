@@ -1,30 +1,19 @@
-const connection = require("../database/connection.js");
+const userRepository = require("../repositories/UserRepository.js");
 
 module.exports = {
   async index(request, response) {
-    const users = await connection('users').select('*');
-    return response.json(users);
+    return await userRepository.index(request, response);
   },
 
   async create(request, response) {
-    const { name, email, password, cellphone } = request.body;
-
-    await connection('users').insert({
-      name, email, password, cellphone
-    });
-
-    return response.json({ name });
+    return await userRepository.create(request, response);
   },
 
   async show(request, response) {
-    const { id } = request.body;
-    const user = await connection('users').where('id', id).first();
-    return response.json(user);
+    return await userRepository.show(request, response);
   },
 
   async delete(request, response) {
-    const { id } = request.body;
-    await connection('users').where('id', id).delete();
-    return response.json({"status_code":204, "result":true});
+    return await userRepository.delete(request, response);  
   }
 }
