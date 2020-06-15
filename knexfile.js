@@ -13,15 +13,15 @@ module.exports = {
     },
   },
 
-  testing: {
-    client: 'pg',
-    connection: process.env.DB_URL,
+  test: {
+    client: 'sqlite3',
+    connection: {
+      filename: './src/database/test.sqlite'
+    },
     migrations: {
       directory: './src/database/migrations',
     },
-    seeds: { 
-      directory: './src/database/seeds' 
-    },
+    useNullAsDefault: true,
   },
 
   staging: {
