@@ -3,7 +3,8 @@ exports.up = function(knex) {
     table.increments();
     table.integer('votes_in_favor').notNullable().defaultTo(0);
     table.integer('votes_against').notNullable().defaultTo(0);
-    table.integer('company_id', 11).unsigned().references('id').inTable('companies');
+    table.integer('company_id').unsigned();
+    table.foreign("company_id").references("companies.id").onDelete("CASCADE");
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });

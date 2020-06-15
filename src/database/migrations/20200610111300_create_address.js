@@ -6,7 +6,8 @@ exports.up = function(knex) {
     table.string('city').notNullable();
     table.string('cep').notNullable();
     table.string('number').notNullable();
-    table.integer('user_id', 11).unsigned().references('id').inTable('users');
+    table.integer('user_id').unsigned();
+    table.foreign("user_id").references("users.id").onDelete("CASCADE");
     table.timestamp('created_at').defaultTo(knex.fn.now())
     table.timestamp('updated_at').defaultTo(knex.fn.now())
   });

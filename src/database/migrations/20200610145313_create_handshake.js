@@ -4,8 +4,10 @@ exports.up = function(knex) {
     table.decimal('value').notNullable();
     table.bool('finished').notNullable();
     table.timestamp('date_finished');
-    table.integer('client_id', 11).unsigned().references('id').inTable('clients');
-    table.integer('company_id', 11).unsigned().references('id').inTable('companies');
+    table.integer('client_id').unsigned();
+    table.integer('company_id').unsigned();
+    table.foreign("client_id").references("clients.id").onDelete("CASCADE");
+    table.foreign("company_id").references("companies.id").onDelete("CASCADE");
     table.timestamp('created_at').defaultTo(knex.fn.now());
   });
 };
