@@ -3,3 +3,4 @@
 /mysqlconf
 /run
 /.scannerwork
+/src/database/test.sqlite
