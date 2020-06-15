@@ -1,9 +1,10 @@
 const connection = require("../database/connection.js");
+const baseRepository = require("./BaseRepository");
 
 module.exports = {
   async index(request, response) {
     try {
-      return response.json(await connection('users').select('*'));
+      return response.json(await baseRepository.index('users'));
     } catch(error) {
       return error;
     }
@@ -12,7 +13,7 @@ module.exports = {
   async create(request, response) {
     try {
       const { name, email, password, cellphone } = request.body;
-      await connection('users').insert({ name, email, password, cellphone });
+      await baseRepository.create('users', { name, email, password, cellphone });
       return response.json({ name });
     } catch(error) {
       return error;
@@ -22,8 +23,7 @@ module.exports = {
   async show(request, response) {
     try {
       const { id } = request.body;
-      const user = await connection('users').where('id', id).first();
-      return response.json(user);
+      return response.json(await baseRepository.show('users', id));
     } catch(error) {
       return error;
     }
@@ -32,7 +32,7 @@ module.exports = {
   async delete(request, response) {
     try {
       const { id } = request.body;
-      const result = await connection('users').where('id', id).delete();
+      const result = await baseRepository.delete('users', id);
       return response.json({ "result": result == 1 ? true : false });
     } catch(error) {
       return error;
