@@ -1,20 +1,15 @@
-const connection = require("../database/connection.js");
+const companyRepository = require("../repositories/CompanyRepository.js");
 
 module.exports = {
   async index(request, response) {
-    const companies = await connection('companies').select('*');
-    return response.json(companies);
+    return await companyRepository.index(request, response);
   },
 
   async create(request, response) {
-    const { cnpj, user_id } = request.body;
-    await connection('companies').insert({ cnpj, user_id });
-    return response.json({ cnpj });
+    return await companyRepository.create(request, response);
   },
 
   async show(request, response) {
-    const { user_id } = request.body;
-    const company = await connection('companies').where('user_id', user_id).first();
-    return response.json(company);
+    return await companyRepository.show(request, response);
   },
 }
