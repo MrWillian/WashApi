@@ -9,8 +9,8 @@ module.exports = {
     return await connection(entity).insert(data);
   },
 
-  async show(entity, data) {
-    return await connection(entity).where('id', data).first();
+  async show(entity, data, column = 'id') {
+    return await connection(entity).where(column, data).first();
   },
 
   async delete(entity, data) {
