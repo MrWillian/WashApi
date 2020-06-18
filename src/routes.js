@@ -6,6 +6,7 @@ const ClientController = require('./controllers/ClientController');
 const CompanyController = require('./controllers/CompanyController');
 const AddressController = require('./controllers/AddressController');
 const PaymentController = require('./controllers/PaymentController');
+const AuthController = require('./controllers/auth/AuthController');
 
 // Middleware
 router.use(function (req, res, next) {
@@ -39,5 +40,8 @@ router.get('/payments', PaymentController.index);
 router.post('/payment', PaymentController.create);
 router.get('/payment', PaymentController.show);
 router.delete('/payment', PaymentController.delete);
+
+// Auth Routes
+router.post('/login', AuthController.login);
 
 module.exports = router;
