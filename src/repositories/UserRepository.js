@@ -1,5 +1,5 @@
 const baseRepository = require("./BaseRepository");
-const encryption = require("../utils/encryption");
+const bcrypt = require('bcrypt');
 
 module.exports = {
   async index(request, response) {
@@ -13,12 +13,13 @@ module.exports = {
   async create(request, response) {
     try {
       const { name, email, password: decryptedPassword, cellphone } = request.body;
-      const { 
-        iv: initialization_vector, encryptedData: password 
-      } = encryption.encrypt(decryptedPassword);
 
-      await baseRepository.create('users', { 
-        name, email, password, initialization_vector, cellphone 
+      bcrypt.genSalt(10, (err, salt) => { 
+        bcrypt.hash(decryptedPassword, salt, async (err, hash) => {
+          await baseRepository.create('users', { 
+            name, email, password: hash, initialization_vector: salt, cellphone 
+          });
+        });
       });
 
       return response.json({ name });
