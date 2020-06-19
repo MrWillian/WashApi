@@ -18,9 +18,9 @@
     "express"
   ],
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
-    "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
