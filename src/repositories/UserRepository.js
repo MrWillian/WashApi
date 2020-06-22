@@ -16,13 +16,14 @@ module.exports = {
 
       bcrypt.genSalt(10, (err, salt) => { 
         bcrypt.hash(decryptedPassword, salt, async (err, hash) => {
-          await baseRepository.create('users', { 
+          const result = await baseRepository.create('users', { 
             name, email, password: hash, initialization_vector: salt, cellphone 
           });
+          const id = result[0];
+          return response.json({ id, name, email, cellphone });
         });
       });
 
-      return response.json({ name });
     } catch(error) {
       return error;
     }
