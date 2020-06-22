@@ -4,7 +4,7 @@ module.exports = {
   async index(request, response) {
     try {
       const columns = [
-        'companies.cnpj', 'companies.tellphone', 
+        'companies.id', 'companies.cnpj', 'companies.tellphone', 
         'users.name', 'users.email',
       ];
       return response.json(
