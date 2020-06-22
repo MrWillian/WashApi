@@ -1,7 +1,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('companies', function(table) {
     table.increments();
-    table.string('cnpj').notNullable();
+    table.string('cnpj');
     table.string('tellphone');
     table.integer('user_id').unsigned();
     table.foreign("user_id").references("users.id").onDelete("CASCADE");
