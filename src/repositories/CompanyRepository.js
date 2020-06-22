@@ -3,7 +3,14 @@ const baseRepository = require("./BaseRepository");
 module.exports = {
   async index(request, response) {
     try {
-      return response.json(await baseRepository.index('companies'));
+      const columns = [
+        'companies.cnpj', 'companies.tellphone', 
+        'users.name', 'users.email',
+      ];
+      return response.json(
+        await baseRepository.index('companies', columns, 'users', 'user_id')
+      );
+
     } catch(error) {
       return error;
     }
@@ -11,8 +18,8 @@ module.exports = {
 
   async create(request, response) {
     try {
-      const { cnpj, user_id } = request.body;
-      await baseRepository.create('companies', { cnpj, user_id });
+      const { cnpj, tellphone, user_id } = request.body;
+      await baseRepository.create('companies', { cnpj, tellphone, user_id });
       return response.json({ cnpj });
     } catch(error) {
       return error;
