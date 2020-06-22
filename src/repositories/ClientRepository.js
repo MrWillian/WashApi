@@ -3,7 +3,13 @@ const baseRepository = require("./BaseRepository");
 module.exports = {
   async index(request, response) {
     try {
-      return response.json(await baseRepository.index('clients'));
+      const columns = [
+        'clients.cpf', 'users.name', 'users.email',
+      ];
+
+      return response.json(
+        await baseRepository.index('clients', columns, 'users', 'user_id')
+      );
     } catch(error) {
       return error;
     }
